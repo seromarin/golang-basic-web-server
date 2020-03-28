@@ -16,6 +16,11 @@ func NewServer(port string) *Server {
 	}
 }
 
+// Handle map path with a handler
+func (s *Server) Handle(path string, handler http.HandlerFunc) {
+	s.router.rules[path] = handler
+}
+
 // Listen incoming request
 func (s *Server) Listen() error {
 	http.Handle("/", s.router)
